@@ -149,32 +149,60 @@ if s:
     g.append(s)
 print(g)
 '''
+'''
+#7
+import math
 
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            return False
+    return True
 
+a = int(input())
+c = a
+if is_prime(a):
+    print(a)
+    exit()
+n = []
+for i in range(1, a + 1):
+    if is_prime(i):
+        while c % i == 0:
+            n.append(i)
+            c //= i
+            
+for j in range(len(n)):
+    if n[-1] != n[j]:
+        print(n[j], '* ', end = '')
+    else:
+        print(n[j], '=', a)
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#бурда дип сика
+skip = 0
+for j in range(len(n)):
+    if skip > 0:
+        skip -= 1
+        continue
+    count = 1
+    while j + count < len(n) and n[j] == n[j + count]:
+        count += 1
+    skip = count - 1
+    
+    if j + count == len(n):
+        if count > 1:
+            print(n[j], '**', count, '=', a, sep='')
+        else:
+            print(n[j], '=', a)
+    else:
+        if count > 1:
+            print(n[j], '**', count, '* ', end='', sep='')
+        else:
+            print(n[j], '* ', end='')
+'''
